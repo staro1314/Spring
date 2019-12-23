@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.spring.domain.dao.mysql.MysqlMapper">
+    <select id="selectUser" resultType="com.example.spring.domain.bean.UserBean">
+        select * from test.user
+        <where>
+            <if test="name!=null">
+                username=#{name}
+            </if>
+            <if test="userId !=null">
+                and id=#{userId}
+            </if>
+            <if test="sex !=null">
+                and sex=#{sex}
+            </if>
+            <if test="addTime!=null">
+                and add_time like "'%"${addTime}"%'"
+            </if>
+        </where>
+    </select>
+
+    <insert id="addUser">
+        insert into test.user(username,sex,add_time,salary)values(#{userBean.username},#{userBean.sex},NOW(),#{userBean.salary})
+    </insert>
+
+    <delete id="deleteUserById">
+        delete from test.user where id=#{userID}
+    </delete>
+
+    <update id="updateUser">
+        update test.user set username=#{userBean.username},sex=#{userBean.sex}
+        where id=#{userBean.id}
+    </update>
+
+    <select id="getUserList" resultType="com.example.spring.domain.bean.UserBean">
+        select * from test.user
+        <where>
+            <if test="name != null">
+                username=#{name}
+            </if>
+        </where>
+    </select>
+</mapper>

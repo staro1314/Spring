@@ -1,0 +1,52 @@
+
+server:
+  port: 8800
+
+spring:
+  profiles:
+    active: db
+#激活国际化
+  messages:
+    basename: i18n.message
+# 配置默认编码
+  http:
+    encoding:
+      charset: utf-8
+
+# 连接池配置 初始化大小、最小、最大
+default:
+  druid:
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+# 连接等待超时时间 1分钟
+    maxWait: 60000
+# 配置连接在池中的最小生存时间
+    minEvictableIdleTimeMillis: 30000
+# 配置隔多久进行一次检测(检测可以关闭的空闲连接)
+    timeBetweenEvictionRunsMillis: 60000
+#查询验证
+    validationQuery: SELECT 1
+#指明连接是否被空闲连接回收器(如果有)进行检验.如果检测失败,则连接将被从池中去除.
+    testWhileIdle: true
+#指明是否在从池中取出连接前进行检验,如果检验失败,则从池中去除连接并尝试取出另一个.
+#设置为true后如果要生效,validationQuery参数必须设置为非空字符串
+    testOnBorrow: true
+#指明是否在归还到池中前进行检验
+    testOnReturn: false
+# 打开PSCache，并且指定每个连接上PSCache的大小,mysql5.5以上
+    poolPreparedStatements: true
+#要启用PSCache，必须配置大于0
+    maxOpenPreparedStatements: 20
+#属性类型是字符串，通过别名的方式配置扩展插件，常用的插件有：
+#监控统计用的filter:stat
+#日志用的filter:log4j
+#防御sql注入的filter:wall
+    filters: stat,wall
+# 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+
+# sql语句打印在控制器
+logging:
+   level:
+      com.example.spring.domain.dao: DEBUG
