@@ -6,6 +6,7 @@ import org.junit.Test;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -54,6 +55,11 @@ public class TestTime {
 
         String format = DateFormatUtils.format(new Date(Long.valueOf("1576166400000")), "yyyy-MM-dd HH:mm:ss");
         System.out.println(format);
+    }
+
+    @Test
+    public void getRandom(){
+        System.out.println(UUID.randomUUID().toString().replace("-",""));
     }
 
 }

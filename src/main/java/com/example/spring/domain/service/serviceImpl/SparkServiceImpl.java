@@ -173,16 +173,22 @@ public class SparkServiceImpl implements SparkService {
         JavaRDD<String> javaRDD = sparkContext.parallelize(list1);
         Dataset<Row> df = sparkSession.read().json(javaRDD);
         df.createOrReplaceTempView("jsonstr");
-        List<String> list = sparkSession.sql("`select `时间`, `时间戳," +
+//        List<String> list = sparkSession.sql("select `时间`, `时间戳`," +
+////                "DATE_FORMAT(to_date(from_unixtime(`时间戳`, 'yyyy-MM-dd HH:mm:ss'),'yyyy/MM/dd HH:mm:ss'),'yyyy/MM/dd') time1 ," +
+////                "from_unixtime(unix_timestamp(`时间`,'MM/dd/yyyy HH:mm:ss'), 'yyyy-MM-dd HH:mm:ss') time1,"+
+////                "cast(replace(`销售额`, ',','') as decimal(31,10)) num,"+
+////                "unix_timestamp(`时间`,'MM/dd/yyyy HH:mm:ss'), " +
+//                "weekofyear(`时间`) w, " +
+//                "day(`时间`) d, " +
+//                "dayofweek(`时间`) wd," +
+//                "QUARTER(`时间`) q," +
+//                "DATE_FORMAT(`时间`, 'yyyy/MM/dd HH:mm:ss') time1 from jsonstr limit 10").toJSON().collectAsList();
+        List<String> list = sparkSession.sql("select `省份`, count(`省份`)" +
 //                "DATE_FORMAT(to_date(from_unixtime(`时间戳`, 'yyyy-MM-dd HH:mm:ss'),'yyyy/MM/dd HH:mm:ss'),'yyyy/MM/dd') time1 ," +
 //                "from_unixtime(unix_timestamp(`时间`,'MM/dd/yyyy HH:mm:ss'), 'yyyy-MM-dd HH:mm:ss') time1,"+
 //                "cast(replace(`销售额`, ',','') as decimal(31,10)) num,"+
 //                "unix_timestamp(`时间`,'MM/dd/yyyy HH:mm:ss'), " +
-                "weekofyear(`时间`) w, " +
-                "day(`时间`) d, " +
-                "dayofweek(`时间`) wd," +
-                "QUARTER(`时间`) q," +
-                "DATE_FORMAT(`时间`, 'yyyy/MM/dd HH:mm:ss') time1 from jsonstr limit 10").toJSON().collectAsList();
+                "from jsonstr group by `省份`").toJSON().collectAsList();
         return list;
     }
 
@@ -249,7 +255,7 @@ public class SparkServiceImpl implements SparkService {
     @Override
     public ReturnBody sparkTest(SparkBean sparkBean) throws GlobalException {
 //        sparkJavaJoin();
-//        List<String> list = sparkJsonDataFrame();
+        List<String> list = sparkJsonDataFrame();
 //        List<String> list = csvToSpark();
         long starTime = System.currentTimeMillis();
         //直连数据库
