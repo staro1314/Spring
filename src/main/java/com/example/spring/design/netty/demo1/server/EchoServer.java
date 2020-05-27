@@ -1,4 +1,4 @@
-package com.example.spring.design.netty.server;
+package com.example.spring.design.netty.demo1.server;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;

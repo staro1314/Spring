@@ -251,6 +251,29 @@
             <version>4.1.6.Final</version>
         </dependency>
         <!--netty-NIO end-->
+        <!--bson start-->
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>bson</artifactId>
+            <version>3.11.0</version>
+        </dependency>
+        <!--bson end-->
+
+        <!--jetty start-->
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-server</artifactId>
+            <version>9.4.25.v20191220</version>
+        </dependency>
+        <!--jetty end-->
+
+        <!--guava start-->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>25.1-jre</version>
+        </dependency>
+        <!--guava end-->
     </dependencies>
 
 
