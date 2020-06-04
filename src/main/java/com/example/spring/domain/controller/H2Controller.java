@@ -5,8 +5,6 @@ import com.example.spring.domain.returnMsg.excetion.GlobalException;
 import com.example.spring.domain.service.service.H2Service;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,9 +28,6 @@ public class H2Controller {
 
     @RequestMapping(value = "createTable", method = RequestMethod.GET)
     @ApiOperation(httpMethod = "GET", value = "h2测试")
-    @ApiResponses({
-            @ApiResponse(code = 200, message = "请求成功"),
-            @ApiResponse(code = 404, message = "请求失败")})
     public ReturnBody createTable() throws GlobalException {
 
         return h2Service.createTable();

@@ -50,3 +50,6 @@ default:
 logging:
    level:
       com.example.spring.domain.dao: DEBUG
+
+swagger:
+ enabled: true
