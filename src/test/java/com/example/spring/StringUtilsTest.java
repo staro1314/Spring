@@ -51,4 +51,24 @@ public class StringUtilsTest {
         System.out.println( s0==s1.intern() );
         System.out.println( s0==s2 );
     }
+
+
+    @Test
+    public void testShift(){
+        int n=49;
+        n |= n >>> 1;
+        n |= n >>> 2;
+        n |= n >>> 4;
+        n |= n >>> 8;
+        n |= n >>> 16;
+        System.out.println(-4<<3);
+
+        String key="3";
+
+        int h;
+        // 如果key为null，则hash值为0，否则调用key的hashCode()方法
+        // 并让高16位与整个hash异或，这样做是为了使计算出的hash更分散
+        System.out.println(((key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16))&4);
+
+    }
 }

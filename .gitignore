@@ -2,4 +2,7 @@ target/
 .idea/
 .mvn/
 spark-warehouse/
-
+mvnw
+mvnw.cmd
+HELP.md
+out/
