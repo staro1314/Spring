@@ -21,7 +21,7 @@
         <scala.version>2.11.12</scala.version>
         <spark.version>2.4.3</spark.version>
         <!--spark 数据聚合 End-->
-        <h2.version>1.4.197</h2.version>
+        <h2.version>2.1.210</h2.version>
     </properties>
 
     <dependencies>
